@@ -1,14 +1,24 @@
-// TODO
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      done: false
+    };
   }
-  render() {
-    return (
-      <li>{this.props.list}</li>
-    );
+  onListItemClick() {
+    this.setState({
+      done: !this.state.done
+    });
   }
 
+  render() {
+    var style = {
+      textDecoration: this.state.done ? 'line-through' : 'none'
+    };
+    return (
+      <li style={style} onClick={this.onListItemClick.bind(this)}>{this.props.list}</li>
+    );
+  }
 }
 var GroceryList = (props) => (
   <ul>
